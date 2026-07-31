@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Ben | Cybersecurity Student</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --accent: #58a6ff;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #21262d;
+  }
+  header h1 { font-size: 2.5rem; margin-bottom: .25rem; color: #fff; }
+  header p { color: var(--muted); font-size: 1.1rem; }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: var(--card);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav a { color: var(--text); text-decoration: none; font-weight: 600; }
+  nav a:hover { color: var(--accent); }
+  main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+  section { margin-bottom: 3rem; }
+  h2 {
+    color: var(--accent);
+    border-bottom: 2px solid #21262d;
+    padding-bottom: .5rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card h3 { margin-top: 0; color: #fff; }
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  .tag {
+    background: #21262d;
+    color: var(--accent);
+    padding: .25rem .75rem;
+    border-radius: 999px;
+    font-size: .8rem;
+  }
+  .links a {
+    color: var(--accent);
+    margin-right: 1rem;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .links a:hover { text-decoration: underline; }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    border-top: 1px solid #21262d;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mohamed Ben</h1>
+  <p>Cybersecurity Student &middot; Cryptography &amp; Malware Analysis Enthusiast</p>
+  <div class="links">
+    <a href="https://github.com/MOHAMEDB999" target="_blank">GitHub</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a cybersecurity student at USTHB, passionate about cryptography,
+      malware analysis, and capture-the-flag challenges. I enjoy building
+      open-source security tools and sharing what I learn through my
+      GitHub projects and content.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Cryptography</h3>
+        <p>Classical and modern cipher implementations: Caesar, Vigenere, Rail Fence, and more.</p>
+      </div>
+      <div class="card">
+        <h3>Malware Analysis</h3>
+        <p>Dynamic analysis techniques and reverse engineering fundamentals.</p>
+      </div>
+      <div class="card">
+        <h3>Programming</h3>
+        <p>Python and JavaScript for automation, tooling, and web development.</p>
+      </div>
+      <div class="card">
+        <h3>Security Fundamentals</h3>
+        <p>CTF challenges, security reporting, and documentation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Cryptography Implementation</h3>
+        <p>A collection of classical cryptographic algorithms implemented from scratch.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Cryptography</span></div>
+      </div>
+      <div class="card">
+        <h3>MalwareLab</h3>
+        <p>Personal lab and notes for dynamic malware analysis experiments.</p>
+        <div class="tags"><span class="tag">Security</span><span class="tag">Analysis</span></div>
+      </div>
+      <div class="card">
+        <h3>Information &amp; Data Security</h3>
+        <p>Notes and projects exploring core information security concepts.</p>
+        <div class="tags"><span class="tag">InfoSec</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Find me on <a href="https://github.com/MOHAMEDB999" target="_blank" style="color:var(--accent)">GitHub</a>
+      to see my latest work and open-source contributions.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Mohamed Ben. Built and deployed with GitHub Pages.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
