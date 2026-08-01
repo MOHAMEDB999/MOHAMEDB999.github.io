@@ -1,0 +1,308 @@
+/* games.css — per-game visuals. Ported from the original single-file site,
+   extended with the three new Cyber Ops games and larger mobile touch targets. */
+
+/* Tic Tac Toe */
+#ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 84px);
+  grid-template-rows: repeat(3, 84px);
+  gap: 6px;
+}
+#ttt-board button {
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  color: var(--cyan);
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+#ttt-board button:hover:not(:disabled) { background: #1b1330; }
+#ttt-board button[data-mark="X"] { color: var(--magenta); }
+#ttt-board button[data-mark="O"] { color: var(--cyan); }
+#ttt-board button.fx-pulse { transform: scale(1.1); }
+
+/* Memory */
+#memory-grid { display: grid; grid-template-columns: repeat(4, 72px); grid-gap: 8px; }
+.mem-card {
+  width: 72px; height: 72px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  font-size: 30px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.18s ease, background 0.12s ease, border-color 0.12s ease;
+}
+.mem-card.flipped, .mem-card.matched { background: #1b1330; border-color: var(--yellow); transform: rotateY(0deg); }
+.mem-card.matched { opacity: 0.55; cursor: default; border-color: var(--green); }
+.mem-card.hidden-face { color: transparent; }
+
+/* 2048 */
+#g2048-board {
+  display: grid;
+  grid-template-columns: repeat(4, 74px);
+  grid-template-rows: repeat(4, 74px);
+  gap: 8px;
+  background: #0e0a1a;
+  padding: 8px;
+  border-radius: 8px;
+}
+.tile-2048 {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  background: #180f30;
+  color: var(--muted);
+  transition: background 0.1s ease, transform 0.12s ease;
+}
+.tile-2048.fx-pulse { transform: scale(1.08); }
+
+/* ---------- Cyber Ops shared components ---------- */
+.deck-card {
+  width: 100%;
+  max-width: 480px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  padding: 18px 20px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.deck-card .field { margin-bottom: 6px; }
+.deck-card .field b { color: var(--muted); font-weight: normal; text-transform: uppercase; font-size: 13px; letter-spacing: 0.06em; }
+.deck-card .field span { color: var(--text); }
+.deck-card .body-text { margin-top: 10px; color: var(--text); border-top: 1px dashed var(--panel-edge); padding-top: 10px; }
+
+.choice-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.choice-btn {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  padding: 10px 22px;
+  min-height: var(--min-touch);
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid var(--panel-edge);
+  background: var(--bg2);
+  color: var(--text);
+}
+.choice-btn.safe { border-color: var(--green); color: var(--green); }
+.choice-btn.safe:hover { background: rgba(109, 255, 109, 0.1); }
+.choice-btn.danger { border-color: var(--magenta); color: var(--magenta); }
+.choice-btn.danger:hover { background: rgba(255, 46, 174, 0.1); }
+.choice-btn:disabled { opacity: 0.5; cursor: default; }
+
+.feedback-box { max-width: 480px; text-align: center; font-size: 17px; padding: 10px 16px; border-radius: 8px; min-height: 20px; }
+.feedback-box.correct { color: var(--green); }
+.feedback-box.incorrect { color: var(--magenta); }
+
+.hud-row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; font-size: 17px; color: var(--muted); }
+.hud-row b { color: var(--yellow); }
+
+.timer-bar-track {
+  width: 100%; max-width: 480px;
+  height: 8px;
+  background: #0e0a1a;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--panel-edge);
+}
+.timer-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--term-green), var(--yellow));
+  width: 100%;
+  transition: width 0.1s linear;
+}
+
+/* Cipher */
+.cipher-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  line-height: 2.1;
+  color: var(--term-green);
+  text-align: center;
+  max-width: 520px;
+  word-break: break-word;
+}
+.cipher-preview {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+  color: var(--yellow);
+  text-align: center;
+  max-width: 520px;
+  word-break: break-word;
+  min-height: 40px;
+}
+.shift-row { display: flex; align-items: center; gap: 14px; }
+.shift-row input[type="range"] { width: 220px; min-height: var(--min-touch); }
+#cipher-shift-val { font-size: 22px; color: var(--cyan); min-width: 34px; text-align: center; }
+
+/* Firewall rules panel */
+.rules-panel {
+  width: 100%; max-width: 480px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+}
+.rules-panel .rule { margin: 3px 0; color: var(--muted); }
+.rules-panel .rule b { color: var(--text); font-weight: normal; }
+
+/* Password fortress */
+#pw-input {
+  width: 100%; max-width: 420px;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  padding: 10px 14px;
+  min-height: var(--min-touch);
+  border-radius: 8px;
+  border: 1px solid var(--panel-edge);
+  background: #0e0a1a;
+  color: var(--text);
+}
+#pw-input:focus { outline: none; border-color: var(--cyan); box-shadow: var(--focus-ring); }
+.meter-track { width: 100%; max-width: 420px; height: 14px; border-radius: 999px; background: #0e0a1a; border: 1px solid var(--panel-edge); overflow: hidden; }
+.meter-fill { height: 100%; width: 0%; transition: width 0.2s ease, background 0.2s ease; }
+.pw-meta { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 17px; color: var(--muted); max-width: 460px; text-align: center; }
+.pw-meta b { color: var(--text); }
+.pw-checklist { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; font-size: 15px; max-width: 460px; }
+.pw-checklist span { color: var(--muted); }
+.pw-checklist span.ok { color: var(--term-green); }
+
+/* Vuln spotter */
+.code-block {
+  width: 100%; max-width: 560px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  padding: 14px 0;
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  overflow-x: auto;
+}
+.code-line { display: flex; gap: 14px; padding: 8px 16px; cursor: pointer; white-space: pre; min-height: var(--min-touch); align-items: center; }
+.code-line:hover { background: rgba(45, 226, 230, 0.08); }
+.code-line .ln { color: var(--muted); min-width: 20px; text-align: right; user-select: none; }
+.code-line .code-text { color: var(--text); }
+.code-line.selected { background: rgba(255, 210, 63, 0.12); }
+.code-line.correct-line { background: rgba(109, 255, 109, 0.15); }
+.code-line.wrong-line { background: rgba(255, 46, 174, 0.15); }
+.explain-box { max-width: 560px; background: #0e0a1a; border: 1px solid var(--panel-edge); border-radius: 8px; padding: 12px 16px; font-size: 17px; color: var(--text); }
+.explain-box b { color: var(--yellow); }
+
+/* ---------- OSINT Trail ---------- */
+.osint-profile {
+  width: 100%; max-width: 520px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.osint-post {
+  padding: 10px 4px;
+  border-bottom: 1px dashed var(--panel-edge);
+  cursor: pointer;
+  border-radius: 6px;
+  min-height: var(--min-touch);
+}
+.osint-post:last-child { border-bottom: none; }
+.osint-post:hover { background: rgba(45, 226, 230, 0.06); }
+.osint-post .handle { color: var(--cyan); font-size: 14px; }
+.osint-post .text { color: var(--text); font-size: 18px; margin-top: 2px; }
+.osint-post.leak-selected { background: rgba(255, 210, 63, 0.12); }
+.osint-post.leak-correct { background: rgba(109, 255, 109, 0.15); }
+.osint-post.leak-missed { background: rgba(255, 46, 174, 0.12); }
+
+/* ---------- Incident Responder ---------- */
+.incident-scenario {
+  width: 100%; max-width: 520px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  padding: 16px 18px;
+  color: var(--text);
+  font-size: 17px;
+}
+.incident-list { list-style: none; margin: 0; padding: 0; width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 8px; }
+.incident-step {
+  display: flex; align-items: center; gap: 12px;
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 17px;
+  cursor: grab;
+  min-height: var(--min-touch);
+}
+.incident-step:active { cursor: grabbing; }
+.incident-step .step-num { font-family: var(--font-display); font-size: 12px; color: var(--muted); min-width: 22px; }
+.incident-step.dragging { opacity: 0.4; }
+.incident-step.correct-slot { border-color: var(--green); }
+.incident-step.wrong-slot { border-color: var(--magenta); }
+.incident-move-btns { display: flex; gap: 6px; margin-left: auto; }
+.incident-move-btns button {
+  background: var(--bg2);
+  border: 1px solid var(--panel-edge);
+  color: var(--muted);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 32px; height: 32px;
+  font-size: 15px;
+}
+.incident-move-btns button:hover { color: var(--cyan); border-color: var(--cyan); }
+
+/* ---------- Patch Priority ---------- */
+.patch-list { list-style: none; margin: 0; padding: 0; width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 8px; }
+.patch-card {
+  background: #0e0a1a;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: grab;
+  min-height: var(--min-touch);
+}
+.patch-card:active { cursor: grabbing; }
+.patch-card .patch-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.patch-card .patch-name { color: var(--text); font-size: 17px; }
+.patch-card .cvss {
+  font-family: var(--font-display);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.cvss.sev-critical { color: var(--magenta); }
+.cvss.sev-high { color: var(--orange); }
+.cvss.sev-medium { color: var(--yellow); }
+.cvss.sev-low { color: var(--green); }
+.patch-card .patch-desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.patch-card.correct-slot { border-color: var(--green); }
+.patch-card.wrong-slot { border-color: var(--magenta); }
+.patch-move-btns { display: flex; gap: 6px; }
+.patch-move-btns button {
+  background: var(--bg2);
+  border: 1px solid var(--panel-edge);
+  color: var(--muted);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 32px; height: 32px;
+  font-size: 15px;
+}
+.patch-move-btns button:hover { color: var(--cyan); border-color: var(--cyan); }
+
+@media (max-width: 480px) {
+  #ttt-board { grid-template-columns: repeat(3, 26vw); grid-template-rows: repeat(3, 26vw); }
+  #ttt-board button { font-size: 26px; }
+  #memory-grid { grid-template-columns: repeat(4, 20vw); }
+  .mem-card { width: 20vw; height: 20vw; font-size: 24px; }
+  #g2048-board { grid-template-columns: repeat(4, 20vw); grid-template-rows: repeat(4, 20vw); }
+  .choice-btn { width: 100%; }
+  .overlay-actions .btn { flex: 1; }
+}
