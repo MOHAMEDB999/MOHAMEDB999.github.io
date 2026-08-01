@@ -1,0 +1,16 @@
+{
+  "name": "cartridge-arcade",
+  "version": "2.0.0",
+  "description": "13 free browser minigames: 5 classic arcade games plus 8 defensive Cyber Ops security drills. No build step required.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes http-server . -p 8080 -c-1",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohamedb999/mohamedb999.github.io"
+  },
+  "license": "MIT"
+}

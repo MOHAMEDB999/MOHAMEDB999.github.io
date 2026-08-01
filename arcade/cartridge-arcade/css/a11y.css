@@ -1,0 +1,38 @@
+/* a11y.css — utilities that exist purely for assistive tech / keyboard users. */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Every interactive control gets a visible, high-contrast focus ring —
+   including ones with a custom look (cart cards, choice buttons, mem cards). */
+.mem-card:focus-visible,
+.tile-2048:focus-visible,
+.osint-post:focus-visible,
+.incident-step:focus-visible,
+.patch-card:focus-visible,
+.choice-btn:focus-visible,
+.code-line:focus-visible,
+#ttt-board button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Ensure range inputs get a visible thumb focus state too. */
+input[type="range"]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 999px;
+}
+
+/* Canvas games (Snake, Pong) are announced through a paired aria-live
+   status line — the canvas itself is marked decorative for screen readers. */
+canvas[aria-hidden="true"] {
+  /* no visual change; documents intent */
+}
